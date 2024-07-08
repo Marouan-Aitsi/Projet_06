@@ -29,6 +29,8 @@ const createWorks = (works) => {
 
 getWorks()
 
+export { getWorks, works }
+
 let categories = [];
 
 const getCategories = async () => {
@@ -79,3 +81,29 @@ function applyFiltre(category, buttonElement){
 }
 
 getCategories()
+
+const userConnected = () => {
+    
+    let token = sessionStorage.getItem('token');
+
+    if (token) {
+        const elementLogin = document.querySelector('.a_login')
+        elementLogin.textContent = "logout"
+        console.log('user connected')
+
+        const elementLogout = document.querySelector('#a_logout')
+        elementLogout.addEventListener('click', () => {
+            sessionStorage.removeItem('token');
+            window.location.href = './login.html';
+        })
+
+        const categoriesElement = document.querySelector('.categories');
+        categoriesElement.style.display = 'none'
+
+    } else {
+         const openModalButton = document.querySelector('.open_modal');
+        openModalButton.style.display = 'none'
+    }
+}
+
+userConnected()

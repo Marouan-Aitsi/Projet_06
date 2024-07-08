@@ -6,20 +6,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script src="/script.js" defer></script>
+	<script type="module" src="script.js" defer></script>
+	<script type="module" src="modal.js" defer></script>
+	
 </head>
 <body>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<a href="#portfolio">projets</a>
-            <a href="#contact">contact</a>
-            <a href="login.html">login</a>
-            <a><img src="./assets/icons/instagram.png" alt="Instagram"></a>
+			<li><a href="#portfolio">projets</a></li>
+            <li><a href="#contact">contact</a></li>
+            <li><a class="a_login" id="a_logout" href="login.html">login</a></li>
+            <li><a><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
 		</ul>
 	</nav>
 </header>
@@ -36,7 +38,21 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="edit_mode">
+			<h2>Mes projets</h2>
+			<a href="#modal1" class="open_modal"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
+		</div>
+			
+		<aside id="modal1" class="modal modal_hidden" aria-hidden="true">
+			<div class="modal-wrapper">
+				<i class="fa-solid fa-xmark"></i>
+				<h3>Galerie photo</h3>
+				<div class="modal_gallery"></div>
+				<div class="modal_button">
+					<button type="button" class="modal_button-add">Ajouter une photo</button>
+				</div>
+			</div>
+		</aside>
 		<div class="categories"></div>
 		<div class="gallery">
 		</div>
