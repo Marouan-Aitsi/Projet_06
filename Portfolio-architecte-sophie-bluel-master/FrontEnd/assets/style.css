@@ -238,16 +238,18 @@ footer nav ul {
 	background-color: #1D6154;
 }
 
-.header_edit{
-	width: 1500px;
-	margin-left: -190px;
-	background-color: black;
-	color: white;
-	text-align: center;
-	padding: 25px 0px;
+#header_edit{
+    display: flex;
+    justify-content: center;
+    width: 2000px;
+    margin-left: -435px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 25px 0px;
 }
 
-.header_edit i{
+#header_edit i{
 	padding: 0px 10px;
 }
 

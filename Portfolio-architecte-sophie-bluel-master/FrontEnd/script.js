@@ -105,14 +105,14 @@ const userConnected = () => {
         const categoriesElement = document.querySelector('.categories');
         categoriesElement.style.display = 'none'
 
-        const headerEdit = document.querySelector('.header_edit')
-        headerEdit.style.display = 'block'
+        const headerEdit = document.querySelector('#header_edit')
+        headerEdit.style.display = 'flex'
 
     } else {
         const openModalButton = document.querySelector('.open_modal');
         openModalButton.style.display = 'none'
 
-        const headerEdit = document.querySelector('.header_edit')
+        const headerEdit = document.querySelector('#header_edit')
         headerEdit.style.display = 'none'
 
     }
