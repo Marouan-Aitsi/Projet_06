@@ -1,4 +1,5 @@
 let works = [];
+let galleryElement;
 
 const getWorks = async () => {
     const response = await fetch("http://localhost:5678/api/works");
@@ -29,7 +30,6 @@ const createWorks = (works) => {
 
 getWorks()
 
-export { getWorks, works }
 
 let categories = [];
 
@@ -39,8 +39,9 @@ const getCategories = async () => {
     const allCategories = [{ id: 0, name: "Tous" }, ...dataCategories];
     categories.push(...allCategories);
     createCategories(categories);
+    createModalCategories(categories)
 }
-
+console.log(categories)
 const createCategories = (categories) => {
     const categoriesElement = document.querySelector('.categories');
 
@@ -52,6 +53,11 @@ const createCategories = (categories) => {
         
         buttonElement.textContent = category.name;
         buttonElement.id = `category-${category.id}`; 
+
+        if (buttonElement.id === `category-${0}`){
+            buttonElement.classList.add('btn_selected')
+            buttonElement.setAttribute('selected', 'selected')
+        }
         
         buttonElement.addEventListener('click', () => {
         applyFiltre(category, buttonElement)
@@ -74,8 +80,7 @@ function applyFiltre(category, buttonElement){
     const workFiltre = works.filter(function(work){
 
         return category.id === work.category.id || category.id === 0
-    }
-    )
+    })
     document.querySelector(".gallery").innerHTML = "";
     createWorks(workFiltre);
 }
@@ -100,10 +105,38 @@ const userConnected = () => {
         const categoriesElement = document.querySelector('.categories');
         categoriesElement.style.display = 'none'
 
+        const headerEdit = document.querySelector('.header_edit')
+        headerEdit.style.display = 'block'
+
     } else {
-         const openModalButton = document.querySelector('.open_modal');
+        const openModalButton = document.querySelector('.open_modal');
         openModalButton.style.display = 'none'
+
+        const headerEdit = document.querySelector('.header_edit')
+        headerEdit.style.display = 'none'
+
     }
 }
 
 userConnected()
+
+
+const createModalCategories = (categories) => {
+    const categorieModal = document.querySelector('#btn_categorie-modal2');
+
+    categories.forEach(category => {
+
+        const optionElement = document.createElement('option');
+        optionElement.value = `${category.id}`;
+        optionElement.textContent = category.name;
+        optionElement.id = `${category.id}`; 
+
+        if (category.id === 0) {
+            optionElement.textContent = 'Sélectionner une catégorie';
+            optionElement.setAttribute('selected', 'selected')
+            }
+        
+        categorieModal.appendChild(optionElement);
+    });
+}
+

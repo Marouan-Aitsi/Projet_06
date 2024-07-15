@@ -9,11 +9,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="script.js" defer></script>
-	<script type="module" src="modal.js" defer></script>
+	<script src="script.js" defer></script>
+	<script src="modal.js" defer></script>
 	
 </head>
 <body>
+	<div class="header_edit">
+		<p><i class="fa-regular fa-pen-to-square"></i>Mode édition</p>
+	</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -53,6 +56,31 @@
 				</div>
 			</div>
 		</aside>
+
+		<aside id="modal2" class="modal modal_hidden" aria-hidden="true">
+			<div class="modal-wrapper">
+				<i class="fa-solid fa-arrow-left"></i>
+				<i class="fa-solid fa-xmark" id="xmark-modal2"></i>
+				<h3>Ajout photo</h3>
+				<button class="btn_image-modal2" type="button">
+					<i class="fa-regular fa-image"></i>
+					<p class="btn_photo">+ Ajouter photo</p>
+					<input type="file" name="Image" id="img_modal" accept=".png">
+					<br>
+					<img src="" id="imagePreview" alt="affichage image">
+					<p class="description">jpg, png : 4mo max</p>
+				</button>
+				<label class="title_modal" for="name_modal2">Titre</label>
+				<input type="text" name="Titre" id="name_modal2">
+				<label class="categorie_modal" for="btn_categorie-modal2">Catégorie</label>
+				<select name="Categorie" id="btn_categorie-modal2">
+				</select>
+				<div class="modal_button">
+					<button type="button" class="modal_button-add" id="valid" disabled="disabled">Valider</button>
+				</div>
+			</div>
+		</aside>
+
 		<div class="categories"></div>
 		<div class="gallery">
 		</div>
