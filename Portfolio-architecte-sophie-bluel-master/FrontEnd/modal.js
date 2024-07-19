@@ -1,3 +1,8 @@
+/**
+ * 
+ *  Ce code permet de récuperer les éléments du works à partir de l'api
+ */
+
 const getModalWorks = async () => {
     try {
         const response = await fetch("http://localhost:5678/api/works");
@@ -12,6 +17,10 @@ const getModalWorks = async () => {
     }
 };
 
+/**
+ * Code permettant l'ouverture et la fermeture des différents modal (modal1 et modal2)
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     const openModalButton = document.querySelector('.open_modal');
     const openModal2button = document.querySelector('#modal1 .modal_button-add')
@@ -21,8 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     const openModal = async () => {
-        console.log('Ouverture du modal');
-
+        
         modal.classList.remove('modal_hidden');
         modal.classList.add('modal_visible');
         modal.setAttribute('aria-hidden', 'false');
@@ -51,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     openModalButton.addEventListener('click', openModal);
 
+    // code pour l'ouverture et fermeture du 2ème modal
     const openModal2 = async () => {
-        console.log('Ouverture 2eme modale')
 
         modal2.classList.remove('modal_hidden');
         modal2.classList.add('modal_visible');
@@ -61,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeModal = document.querySelector('#xmark-modal2')
 
         closeModal.addEventListener('click', () => {
-            console.log('fermeture modale ')
             modal2.classList.add('modal_hidden');
             modal2.classList.remove('modal_visible');
             modal2.setAttribute('aria-hidden', 'true');
@@ -80,6 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     openModal2button.addEventListener('click', openModal2)
 });
+
+/**
+ * 
+ *  Ce code permet de récuperer les éléments du works et de les modifier à partir de l'api directement dans le modal
+ */
+
 
 const createModalWorks = (works) => {
     const ModalGalleryElement = document.querySelector('.modal_gallery');
@@ -101,6 +114,7 @@ const createModalWorks = (works) => {
             deleteWork();
         });
 
+        // code permettant de suprimmé les élément du modal
         const deleteWork = async() => {
             
             let token = sessionStorage.getItem('token');
@@ -129,6 +143,10 @@ const createModalWorks = (works) => {
     });
 };
 
+/**
+ * Permet d'affiché l'image qu'on veut ajouter dans l'input type=file
+ */
+
 const imgModal = document.querySelector('#img_modal')
 
 imgModal.addEventListener('change', function(event) {
@@ -154,6 +172,10 @@ imgModal.addEventListener('change', function(event) {
     }
 });
 
+/**
+ * Code permettant d'activer le bouton de validation si tout les éléments de saisis sont remplis
+ */
+
 const validModalAdd = document.querySelector('#valid')
 const titleModalElement = document.querySelector('#name_modal2');
 const categoryModalElement = document.querySelector('#btn_categorie-modal2')
@@ -176,13 +198,16 @@ imgModal.addEventListener('change', validModalAddDisabled);
 titleModalElement.addEventListener('input', validModalAddDisabled);
 categoryModalElement.addEventListener('change', validModalAddDisabled);
 
+/**
+ * Code permettant ajouter les photos dans notre galerie
+ */
+
 const addImg = async (imgModal, titleModalElement, categoryModalElement) => {
     let token = sessionStorage.getItem('token');
 
     const file = imgModal.files[0];
     const title = titleModalElement.value;
     const category = categoryModalElement.value;
-    console.log(file, title, category)
 
     const formData = new FormData();
     formData.append("image", file);
@@ -203,6 +228,11 @@ const addImg = async (imgModal, titleModalElement, categoryModalElement) => {
     }
 }
 
+/**
+ * 
+ * code permettant de retourner dans le premier modal
+ */
+
 const returnModal1 = () => {
     const modal = document.getElementById('modal1');
     const modal2 = document.getElementById('modal2')
@@ -217,6 +247,9 @@ const returnModal1 = () => {
         clearForm();
 }
 
+/**
+ * code permettant d'enlever tout les élément saisie après la fermeture du modal ou l'ajout d'une nouvel image dans notre galerie
+ */
 
 const clearForm = () => {
     const imagePreview = document.querySelector('#imagePreview')
@@ -231,6 +264,10 @@ const clearForm = () => {
     categoryModalElement.value = "0";
     validModalAddDisabled()
 }
+
+/**
+ * code permettant de mettre à jour la gallerie directement après l'ajout ou la suppression d'une image sans recharger la page 
+ */
 
 const updateModal = async() => {
     const galleryElement = document.querySelector('.gallery');

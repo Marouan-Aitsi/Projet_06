@@ -1,3 +1,7 @@
+/**
+ * code permettant de récuperer les element de la gallerie via l'api
+ */
+
 let works = [];
 let galleryElement;
 
@@ -7,6 +11,7 @@ const getWorks = async () => {
     works.push(...dataProjects);
     createWorks(works);
 }
+// création de chaque image dynamiquement
 const createWorks = (works) => {
     const galleryElement = document.querySelector('.gallery');
 
@@ -30,6 +35,9 @@ const createWorks = (works) => {
 
 getWorks()
 
+/**
+ * code permettant de créer un bouton pour chaque catégorie
+ */
 
 let categories = [];
 
@@ -41,7 +49,7 @@ const getCategories = async () => {
     createCategories(categories);
     createModalCategories(categories)
 }
-console.log(categories)
+// création de chaque catégorie dynamiquement
 const createCategories = (categories) => {
     const categoriesElement = document.querySelector('.categories');
 
@@ -54,6 +62,7 @@ const createCategories = (categories) => {
         buttonElement.textContent = category.name;
         buttonElement.id = `category-${category.id}`; 
 
+        // appliquer le filtre par défaut directement sur l'élément "Tous"
         if (buttonElement.id === `category-${0}`){
             buttonElement.classList.add('btn_selected')
             buttonElement.setAttribute('selected', 'selected')
@@ -66,6 +75,11 @@ const createCategories = (categories) => {
         categoriesElement.appendChild(buttonElement);
     });
 }
+
+/**
+ * 
+ * Filtre pour changer la couleur du bouton selection et afficher les éléments de la gallerie selon sa catégorie
+ */
 
 function applyFiltre(category, buttonElement){
     const buttonSelected = document.querySelector('.btn_selected')
@@ -87,6 +101,10 @@ function applyFiltre(category, buttonElement){
 
 getCategories()
 
+/**
+ * code permettant de changer le "login" en "logout" et deconnecter l'utilisateur après connexion
+ */
+
 const userConnected = () => {
     
     let token = sessionStorage.getItem('token');
@@ -94,7 +112,7 @@ const userConnected = () => {
     if (token) {
         const elementLogin = document.querySelector('.a_login')
         elementLogin.textContent = "logout"
-        console.log('user connected')
+
 
         const elementLogout = document.querySelector('#a_logout')
         elementLogout.addEventListener('click', () => {
@@ -120,6 +138,10 @@ const userConnected = () => {
 
 userConnected()
 
+/**
+ * 
+ * Code permettant de créer une liste déroulante avec comme option chaque catégorie pour l'ajout de nouvel image et pouvoir séléctionner directement sa catégorie
+ */
 
 const createModalCategories = (categories) => {
     const categorieModal = document.querySelector('#btn_categorie-modal2');
@@ -131,6 +153,7 @@ const createModalCategories = (categories) => {
         optionElement.textContent = category.name;
         optionElement.id = `${category.id}`; 
 
+        // affiche par défaut comme option "Selectionner une catégorie"
         if (category.id === 0) {
             optionElement.textContent = 'Sélectionner une catégorie';
             optionElement.setAttribute('selected', 'selected')

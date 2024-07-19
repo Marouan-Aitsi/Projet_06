@@ -1,3 +1,7 @@
+/**
+ * Code permettant la connexion au serveur afin de pouvoir modifier les éléments de la gallerie
+ */
+
 const formLoginElement = document.querySelector('#login');
 
 const login = async (data) => {
